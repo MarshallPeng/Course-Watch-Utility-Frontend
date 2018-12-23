@@ -1,0 +1,12 @@
+clr-alert {
+  position: fixed;
+  z-index: 20;
+  text-align: center;
+  margin-left: 20vw;
+  margin-right: 20vw;
+  width: 60vw;
+}
+
+clr-alert .alert-text {
+  text-align: center;
+}

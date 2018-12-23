@@ -1,0 +1,6 @@
+header {
+  z-index: 100;
+  background-color: #039BE5;
+  -webkit-box-shadow: 0 10px 20px grey;
+  box-shadow: 0 10px 20px grey;
+}

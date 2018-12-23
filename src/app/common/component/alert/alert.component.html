@@ -1,0 +1,10 @@
+<div class="alert-space">
+  <br>
+  <clr-alert [clrAlertType]="this.alertContent.type" (clrAlertClosedChange)="onClose()">
+    <clr-alert-item>
+      <span class="alert-text">
+        {{this.alertContent.message}}
+      </span>
+    </clr-alert-item>
+  </clr-alert>
+</div>

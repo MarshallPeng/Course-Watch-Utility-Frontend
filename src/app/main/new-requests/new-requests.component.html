@@ -1,0 +1,41 @@
+<div class="center forward">
+  <h2>Create New Request</h2>
+  <form clrForm [formGroup]="requestForm">
+    <clr-input-container>
+      <label>Subject Code</label>
+      <input clrInput placeholder="Ex: COSC, ECON, ENGS, etc." type="text" formControlName="subj" size="20" required />
+      <clr-control-error>This is a required field</clr-control-error>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Course Number</label>
+      <input clrInput placeholder="Number of the course" type="text" formControlName="number" size="20" required />
+      <clr-control-error>This is a required field</clr-control-error>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Period</label>
+      <input clrInput type="text" placeholder="Ex: 10, 2, 2A, 10A, etc." formControlName="period" size="20" required/>
+      <clr-control-error>This is a required field</clr-control-error>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Professor</label>
+      <input clrInput type="text" placeholder="Last name of professor" formControlName="prof" size="20" required />
+      <clr-control-error>This is a required field</clr-control-error>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Your Email</label>
+      <input clrInput type="text" placeholder="For Notifications" formControlName="email" size="20" required />
+      <clr-control-error>This is a required field</clr-control-error>
+    </clr-input-container>
+
+    <br>
+    <button class="btn" type="submit" (click)="submit()">Submit</button>
+  </form>
+
+  <span class="spinner" *ngIf="this.show">
+    Loading...
+  </span>
+</div>
