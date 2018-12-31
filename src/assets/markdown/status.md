@@ -1,7 +1,7 @@
-## Status
+## Status - <span style="color:green"><b>LIVE</b></span>
 ---
 
-The service is currently <span style="color:green">LIVE</span>. Though, this is only useful during the add-drop period.
+The service is currently <b><span style="color:green">LIVE</span></b>. Though, this is only useful during the add-drop period.
 
 
 ## How To Use
@@ -19,3 +19,4 @@ The service is currently <span style="color:green">LIVE</span>. Though, this is 
 * You'll probably get quicker notifications if you use a non-Dartmouth email since Dartmouth tends to hold incoming emails and release them all at once. Just be sure to check this email frequently. It's your own fault if I notify you and you don't register
 * The service will stop tracking after the first time it sees an empty slot in a class. If for some reason, you were busy and didn't get to register before the class filled up again, just fill out another request.
 * I can't believe I took all this time to make this. I'm a junior... I feel like such a freshman trying to get into classes.
+* This service does not work for classes that require Instructor Permission to join ... duh.

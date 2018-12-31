@@ -1,14 +1,17 @@
-<div class="content-container">
-
-  <div *ngFor="let alert of alerts">
-    <cw-alert [alertContent]="alert"></cw-alert>
+<div class="container-fluid">
+  <div class="clr-row">
+    <div *ngFor="let alert of alerts">
+      <cw-alert [alertContent]="alert"></cw-alert>
+    </div>
   </div>
 
-  <div class="split left">
-    <app-new-requests (onFinishRequest)="pushAlert($event)"></app-new-requests>
-  </div>
+  <div class="clr-row clr-align-items-center clr-justify-content-center">
+    <div class="clr-col-lg-4">
+      <app-new-requests (onFinishRequest)="pushAlert($event)"></app-new-requests>
+    </div>
 
-  <div class="split right">
-    <app-current-requests [onSuccessRequest]="updateTable"></app-current-requests>
+    <div class="clr-col-lg-6 clr-offset-lg-1">
+      <app-current-requests [onSuccessRequest]="updateTable"></app-current-requests>
+    </div>
   </div>
 </div>

@@ -1,16 +1,8 @@
 .center {
-  margin: inherit;
-  padding: 20px;
+  padding: 5vh;
   text-align: center;
-  -ms-transform: translateY(10vh);
-  transform: translateY(10vh);
-  margin-left: -40px;
 }
 
-.table {
-  width: 700px;
-  height: 472px;
-}
 
 .forward {
   background-color: white;
