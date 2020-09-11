@@ -3,7 +3,7 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { ModuleWithProviders } from '@angular/core/src/metadata/ng_module';
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AboutComponent } from './about/about.component';
@@ -17,6 +17,6 @@ export const ROUTES: Routes = [
     {path: 'home', component: MainComponent},
 ];
 
-export const ROUTING: ModuleWithProviders = RouterModule.forRoot(ROUTES, {
+export const ROUTING: ModuleWithProviders<any> = RouterModule.forRoot(ROUTES, {
   onSameUrlNavigation: 'reload',
 });

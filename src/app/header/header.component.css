@@ -4,3 +4,16 @@ header {
   -webkit-box-shadow: 0 10px 20px grey;
   box-shadow: 0 10px 20px grey;
 }
+
+.user-info {
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.user-info:hover {
+  color: #a1aaa7;
+  cursor: pointer;
+}

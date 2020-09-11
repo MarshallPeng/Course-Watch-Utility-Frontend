@@ -51,7 +51,13 @@ ng serve
 Build project with
 
 ```
-ng build --prod
+ng build
+```
+
+Deploy with
+
+```
+firebase deploy
 ```
 
 ## License
