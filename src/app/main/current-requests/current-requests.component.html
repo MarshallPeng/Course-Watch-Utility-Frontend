@@ -1,56 +1,66 @@
 <div class="center forward table">
-  <h2>Current Watch Requests</h2>
+    <h2>Current Watch Requests</h2>
 
-  <clr-datagrid *ngIf="!this.updatingTable" class="datagrid-compact">
-    <clr-dg-column>Subject</clr-dg-column>
-    <clr-dg-column>Number</clr-dg-column>
-    <clr-dg-column>Period</clr-dg-column>
-    <clr-dg-column>Prof</clr-dg-column>
-    <clr-dg-column>Email</clr-dg-column>
+    <clr-datagrid *ngIf="!this.updatingTable" class="datagrid-compact">
+        <clr-dg-column>Subject</clr-dg-column>
+        <clr-dg-column>Number</clr-dg-column>
+        <clr-dg-column>Period</clr-dg-column>
+        <clr-dg-column>Prof</clr-dg-column>
+        <clr-dg-column>Email</clr-dg-column>
 
-    <clr-dg-placeholder>We couldn't find any requests!</clr-dg-placeholder>
+        <clr-dg-placeholder>We couldn't find any requests!</clr-dg-placeholder>
 
-    <clr-dg-row *clrDgItems="let course of this.courses" [clrDgItem]="course">
-      <clr-dg-cell>{{course.subj}}</clr-dg-cell>
-      <clr-dg-cell>{{course.number}}</clr-dg-cell>
-      <clr-dg-cell>{{course.period}}</clr-dg-cell>
-      <clr-dg-cell>{{course.prof}}</clr-dg-cell>
-      <clr-dg-cell>{{course.email}}</clr-dg-cell>
-    </clr-dg-row>
+        <clr-dg-row *clrDgItems="let course of this.courses" [clrDgItem]="course">
+            <clr-dg-cell>{{course.subj}}</clr-dg-cell>
+            <clr-dg-cell>{{course.number}}</clr-dg-cell>
+            <clr-dg-cell>{{course.period}}</clr-dg-cell>
+            <clr-dg-cell>{{course.prof}}</clr-dg-cell>
+            <clr-dg-cell>{{course.email}}</clr-dg-cell>
+        </clr-dg-row>
 
-    <clr-dg-footer>
-      {{courses.length}} requests
-    </clr-dg-footer>
+        <clr-dg-footer>
+            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                <clr-dg-page-size [clrPageSizeOptions]="[5, 10, 20]">Requests per page</clr-dg-page-size>
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                of {{pagination.totalItems}} Requests
+            </clr-dg-pagination>
+            <!--      {{courses.length}} requests-->
+        </clr-dg-footer>
 
-  <!-- Show copy while updating table -->
-  </clr-datagrid>
-  <clr-datagrid *ngIf="this.updatingTable" class="datagrid-compact">
-    <clr-dg-column>Subject</clr-dg-column>
-    <clr-dg-column>Number</clr-dg-column>
-    <clr-dg-column>Period</clr-dg-column>
-    <clr-dg-column>Prof</clr-dg-column>
-    <clr-dg-column>Email</clr-dg-column>
+        <!-- Show copy while updating table -->
+    </clr-datagrid>
+    <clr-datagrid *ngIf="this.updatingTable" class="datagrid-compact">
+        <clr-dg-column>Subject</clr-dg-column>
+        <clr-dg-column>Number</clr-dg-column>
+        <clr-dg-column>Period</clr-dg-column>
+        <clr-dg-column>Prof</clr-dg-column>
+        <clr-dg-column>Email</clr-dg-column>
 
-    <clr-dg-placeholder>We couldn't find any requests!</clr-dg-placeholder>
+        <clr-dg-placeholder>We couldn't find any requests!</clr-dg-placeholder>
 
-    <clr-dg-row *clrDgItems="let course of this.courses" [clrDgItem]="course">
-      <clr-dg-cell>{{course.subj}}</clr-dg-cell>
-      <clr-dg-cell>{{course.number}}</clr-dg-cell>
-      <clr-dg-cell>{{course.period}}</clr-dg-cell>
-      <clr-dg-cell>{{course.prof}}</clr-dg-cell>
-      <clr-dg-cell>{{course.email}}</clr-dg-cell>
-    </clr-dg-row>
+        <clr-dg-row *clrDgItems="let course of this.courses" [clrDgItem]="course">
+            <clr-dg-cell>{{course.subj}}</clr-dg-cell>
+            <clr-dg-cell>{{course.number}}</clr-dg-cell>
+            <clr-dg-cell>{{course.period}}</clr-dg-cell>
+            <clr-dg-cell>{{course.prof}}</clr-dg-cell>
+            <clr-dg-cell>{{course.email}}</clr-dg-cell>
+        </clr-dg-row>
 
-    <clr-dg-footer>
-      {{courses.length}} requests
-    </clr-dg-footer>
+        <clr-dg-footer>
+            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                <clr-dg-page-size [clrPageSizeOptions]="[5, 10, 20]">Requests per page</clr-dg-page-size>
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                of {{pagination.totalItems}} Requests
+            </clr-dg-pagination>
+        </clr-dg-footer>
 
-  </clr-datagrid>
+    </clr-datagrid>
 
 
-
-  <span class="spinner" *ngIf="this.show">
+    <span class="spinner" *ngIf="this.show">
     Loading...
   </span>
+
+    <app-instructions></app-instructions>
 
 </div>

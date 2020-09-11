@@ -1,0 +1,36 @@
+<div class="login-wrapper no-border">
+    <form class="login">
+        <section class="title">
+            <h3 class="welcome">Dartmouth</h3>
+            Course Watch Utility
+        </section>
+        <div *ngIf="authService.hasError" class="error active">
+            Invalid user name or password
+        </div>
+        <div class="login-group">
+            <clr-input-container>
+                <label class="clr-sr-only">Username</label>
+                <label>
+                    <input clrInput size="42" type="text" class="formControl" placeholder="Email" #email required>
+                </label>
+            </clr-input-container>
+            <clr-input-container>
+                <label class="clr-sr-only">Password</label>
+                <label>
+                    <input clrInput size="42" type="password" class="formControl" placeholder="Password" #password
+                           required>
+                </label>
+            </clr-input-container>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="authService.signIn(email.value, password.value)">Sign
+            In
+        </button>
+        <button type="submit" class="btn btn-primary" (click)="authService.register(email.value, password.value)">Register
+        </button>
+
+        <button class="btn" (click)="authService.googleLogin()">
+            <img width="20px" src="../../../assets/images/google.png" class="sign-in-icon">Sign In with Google
+        </button>
+
+    </form>
+</div>

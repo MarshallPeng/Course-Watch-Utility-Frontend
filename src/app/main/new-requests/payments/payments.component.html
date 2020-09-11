@@ -1,0 +1,13 @@
+<div class="submit-text" *ngIf="!paidFor">
+    <h3>Submit Request - ${{ product.price }} </h3>
+</div>
+
+<div class="submit-text" *ngIf=paidFor>
+    <h3>Request Submitted</h3>
+</div>
+
+<span class="spinner submit-text" *ngIf="this.processingPayment">
+    Processing...
+</span>
+
+<div #paypal></div>

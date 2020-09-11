@@ -9,3 +9,10 @@
   -webkit-box-shadow: 0 0 15px grey;
   box-shadow: 0 0 15px grey;
 }
+
+.disabled
+{
+  pointer-events: none;
+  /* for "disabled" effect */
+  opacity: 0.25;
+}

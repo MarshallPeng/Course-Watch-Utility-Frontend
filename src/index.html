@@ -2,21 +2,42 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Course Watch Utility</title>
-  <base href="/">
+    <meta charset="utf-8">
+    <title>Course Watch Utility</title>
+    <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script
+            src="https://www.paypal.com/sdk/js?client-id=ASLocGwj1zRz35o_hD4EP4lJ90rIJTYfzGcVNfPDdoB6KCm9O0SNezrcgBKCZXKAiN914_mf8l6f6-rf">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+
+    <script src="/__/firebase/7.19.0/firebase-auth.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBN95AL2UVwDQeYKItxixrVB5C2_9Sd30I",
+            authDomain: "course-watch-utility-1d35d.firebaseapp.com",
+            databaseURL: "https://course-watch-utility-1d35d.firebaseio.com",
+            projectId: "course-watch-utility-1d35d",
+            storageBucket: "course-watch-utility-1d35d.appspot.com",
+            messagingSenderId: "352895555512",
+            appId: "1:352895555512:web:cac7f9bd1ea4e39645214d"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 
 <body>
-  <app-root>
+<app-root>
     <!-- loader spinner -->
     <div style="height: 100vh; display: flex; justify-content: center; align-items: center;">
         <span class="spinner"></span>
     </div>
-  </app-root>
+</app-root>
 </body>
 
 </html>

@@ -1,91 +1,113 @@
-import { Component, OnInit, SimpleChanges, ElementRef, ViewChild } from '@angular/core';
+import {Component, OnInit, SimpleChanges, ElementRef, ViewChild} from '@angular/core';
 
-import { Observable, Subscription } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
-import { CourseRequest } from '../../../model/CourseRequest';
-import { LoaderState } from '../../../common/loader';
-import { LoaderService } from '../../service/loader.service';
-import { APIService } from '../../service/api-service';
-import { Input } from '@angular/core';
-import { OnChanges } from '@angular/core';
+import {Observable, Subscription} from 'rxjs';
+import {HttpResponse} from '@angular/common/http';
+import {CourseRequest} from '../../../model/CourseRequest';
+import {LoaderState} from '../../../common/loader';
+import {LoaderService} from '../../service/loader.service';
+import {APIService} from '../../service/api-service';
+import {Input} from '@angular/core';
+import {OnChanges} from '@angular/core';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
-  selector: 'app-current-requests',
-  templateUrl: './current-requests.component.html',
-  styleUrls: ['./current-requests.component.css']
+    selector: 'app-current-requests',
+    templateUrl: './current-requests.component.html',
+    styleUrls: ['./current-requests.component.css']
 })
 export class CurrentRequestsComponent implements OnChanges {
 
-  // Array of courses to feed into datagrid
-  courses: CourseRequest[] = [];
+    // Array of courses to feed into datagrid
+    courses: CourseRequest[] = [];
 
-  // Variables to handle updating of table after successful request.
-  @Input() onSuccessRequest: boolean = false;
-  @ViewChild('table') requestTable: ElementRef;
-  updatingTable: boolean = false;
+    // Variables to handle updating of table after successful request.
+    @Input() onSuccessRequest = false;
+    @ViewChild('table') requestTable: ElementRef;
+    updatingTable = false;
 
-  // Variables for Loader
-  show: boolean = false;
-  private subscription: Subscription;
+    // Variables for Loader
+    show = false;
+    private subscription: Subscription;
+    private user: { account_email: string; uid: string };
 
-  /**
-  * Get current requests when paeg loads, and subscribe to loaderservice so that
-  * the spinner shows when making HTTP requests.
-  */
-  constructor(private apiService: APIService, private loaderService: LoaderService) {
+    /**
+     * Get current requests when paeg loads, and subscribe to loaderservice so that
+     * the spinner shows when making HTTP requests.
+     */
+    constructor(private apiService: APIService, private loaderService: LoaderService, private authService: AuthService) {
 
-    this.subscription = this.loaderService.loaderState
-      .subscribe((state: LoaderState) => {
-        this.show = state.show;
-      });
+        this.subscription = this.loaderService.loaderState
+            .subscribe((state: LoaderState) => {
+                this.show = state.show;
+            });
 
-    this.apiService.get_current_requests().subscribe(
-      (data: HttpResponse<Object>) => {
-        for (var i = 0; i < data['result'].length; i++) {
-          this.courses[i] = this.jsonToRequest(JSON.parse(data['result'][i]))
-          console.log(this.courses[i]);
-        }
-      },
-    );
-  }
+        this.user = {
+            'account_email': this.authService.userDetails.email,
+            'uid': this.authService.userDetails.uid
+        };
 
-  /**
-  * When receive success repsonse from backend, from NewRequestsComponent,
-  * Make another request to update the table to reflect the new requests
-  * TODO: Come up with a better fix for the table display. See note below.
-  */
-  ngOnChanges(changes: SimpleChanges): void {
-
-    if (changes.onSuccessRequest.currentValue == true) {
-
-      this.updatingTable = true;
-      this.apiService.get_current_requests().subscribe(
-        (data: HttpResponse<Object>) => {
-          for (var i = 0; i < data['result'].length; i++) {
-            this.courses[i] = this.jsonToRequest(JSON.parse(data['result'][i]));
-          }
-          this.updatingTable = false;
-        }, );
-
-      this.onSuccessRequest = false;
+        this.apiService.get_current_requests(JSON.stringify(this.user)).subscribe(
+            (data: HttpResponse<Object>) => {
+                for (let i = 0; i < data['result'].length; i++) {
+                    this.courses[i] = this.jsonToRequest(JSON.parse(data['result'][i]));
+                    console.log(this.courses[i]);
+                }
+            },
+        );
     }
-  }
 
-  // This is really fucking stupid. How do you turn a json into an object neatly?
-  private jsonToRequest(json: JSON) {
-    var request = new CourseRequest();
-    request.email = json['email'];
-    request.id = json['id'];
-    request.number = json['number'];
-    request.period = json['period'];
-    request.subj = json['subj'];
-    request.prof = json['prof'];
+  /**
+   * This gets triggered when a success alert gets pushed
+   */
+  updateTable() {
+        this.updatingTable = true;
+        this.apiService.get_current_requests(JSON.stringify(this.user)).subscribe(
+            (data: HttpResponse<Object>) => {
+                for (let i = 0; i < data['result'].length; i++) {
+                    this.courses[i] = this.jsonToRequest(JSON.parse(data['result'][i]));
+                }
+                this.updatingTable = false;
+            },);
 
-    return request
-  }
+        this.onSuccessRequest = false;
+    }
+
+    /**
+     * When receive success repsonse from backend, from NewRequestsComponent,
+     * Make another request to update the table to reflect the new requests
+     * TODO: Come up with a better fix for the table display. See note below.
+     */
+    ngOnChanges(changes: SimpleChanges): void {
+
+        if (changes.onSuccessRequest.currentValue === true) {
+
+            this.updatingTable = true;
+            this.apiService.get_current_requests(JSON.stringify(this.user)).subscribe(
+                (data: HttpResponse<Object>) => {
+                    for (let i = 0; i < data['result'].length; i++) {
+                        this.courses[i] = this.jsonToRequest(JSON.parse(data['result'][i]));
+                    }
+                    this.updatingTable = false;
+                },);
+
+            this.onSuccessRequest = false;
+        }
+    }
+
+    // This is really fucking stupid. How do you turn a json into an object neatly?
+    private jsonToRequest(json: JSON) {
+        const request = new CourseRequest();
+        request.email = json['email'];
+        request.id = json['id'];
+        request.number = json['number'];
+        request.period = json['period'];
+        request.subj = json['subj'];
+        request.prof = json['prof'];
+
+        return request;
+    }
 
 }
-
 
 
 // This is the hackiest fix ever.

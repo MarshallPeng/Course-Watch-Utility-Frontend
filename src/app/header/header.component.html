@@ -1,16 +1,19 @@
 <header class="header-5">
-  <div class="branding">
-    <a class="nav-link">
-      <clr-icon shape="eye"></clr-icon>
-      <span class="title">Course Watch Utility</span>
-    </a>
-  </div>
-  <div class="header-nav">
-    <a routerLink="/home" routerLinkActive="active" class="nav-link nav-text">
-      Home
-    </a>
-    <a routerLink="/status" routerLinkActive="active" class="nav-link nav-text">
-      Status
-    </a>
-  </div>
+    <div class="branding">
+        <a class="nav-link">
+            <clr-icon shape="eye"></clr-icon>
+            <span class="title">Course Watch Utility</span>
+        </a>
+    </div>
+    <div class="header-nav">
+        <a routerLink="/home" routerLinkActive="active" class="nav-link nav-text">
+            Home
+        </a>
+        <a routerLink="/status" routerLinkActive="active" class="nav-link nav-text">
+            Status
+        </a>
+    </div>
+    <div *ngIf="this.authService.user$ | async as user;" class="nav-link nav-text" (click)="this.authService.signOut()" class="user-info">
+      Logout {{user.email}}
+    </div>
 </header>
