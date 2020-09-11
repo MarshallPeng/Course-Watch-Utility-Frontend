@@ -32,7 +32,7 @@ const firebaseConfig = {
   databaseURL: "https://course-watch-utility-1d35d.firebaseio.com",
   projectId: "course-watch-utility-1d35d",
   storageBucket: "course-watch-utility-1d35d.appspot.com",
-  messagingSenderId: "SECRET",
+  messagingSenderId: "SECRET", 
   appId: "SECRET"
 };
 
