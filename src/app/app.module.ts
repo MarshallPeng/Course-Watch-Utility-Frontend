@@ -27,13 +27,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InstructionsComponent } from './main/current-requests/instructions/instructions.component';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBN95AL2UVwDQeYKItxixrVB5C2_9Sd30I",
+  apiKey: "SECRET",
   authDomain: "course-watch-utility-1d35d.firebaseapp.com",
   databaseURL: "https://course-watch-utility-1d35d.firebaseio.com",
   projectId: "course-watch-utility-1d35d",
   storageBucket: "course-watch-utility-1d35d.appspot.com",
-  messagingSenderId: "352895555512",
-  appId: "1:352895555512:web:cac7f9bd1ea4e39645214d"
+  messagingSenderId: "SECRET", 
+  appId: "SECRET"
 };
 
 
