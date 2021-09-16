@@ -60,6 +60,13 @@ Deploy with
 firebase deploy
 ```
 
+If error about "Please make sure project exists and your account has permission to access it"
+
+```
+firebase logout; firebase login
+```
+
+
 ## License
 
 This project is licensed under the MIT license - see [LICENSE.txt](LICENSE.txt) for details
